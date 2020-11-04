@@ -34,7 +34,7 @@ form.addEventListener("submit", (e) => {
   const msgText = input.value;
 
   const msg = {
-    author: username,
+    author: client_username,
     text: msgText,
   };
 
