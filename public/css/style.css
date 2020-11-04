@@ -171,6 +171,31 @@ a {
   width: 100%;
 }
 
+.user{
+  background-color: #00695f;
+  padding: 0.4em;
+  border-radius: 0.25em;
+  margin: 5px 0;
+}
+
+
+#zeleni-kruzic{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: chartreuse;
+  align-self: center;
+}
+
+#client_username{
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.chat-sidebar > h3{
+  display: flex;
+  justify-content: space-between;
+}
 @media (max-width: 700px) {
   .chat-main {
     display: block;

@@ -6,8 +6,10 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
-// Pushovano zbog herokua
+let usernames=[]; //Niz gde se cuvaju trenutno ulogovani korisnici
 
+
+//process.env.PORT || 
 const PORT = process.env.PORT || 3000;
 
 server.listen(PORT, () => {
@@ -26,4 +28,24 @@ io.on("connection", (socket) => {
     // Salje poruke svim konektovanim korisnicima
     io.emit("message", msg);
   });
+
+  socket.on("add_username", (username) =>{
+
+    //Petlja koja korisniku koji se tek konektovao salje usernamove svih
+    //prethodno konektovanih korisnika
+    usernames.forEach(u => {
+      socket.emit("add_username",u);
+    });
+
+    io.emit("add_username",username);
+
+    usernames.push(username);//Dodaj korisnika u niz korisnika
+  }) 
+
+  socket.on("remove_username", (username) =>{
+    io.emit("remove_username",username)
+
+    usernames = usernames.filter(x=>x!=username);
+    console.log(usernames);
+  })
 });
